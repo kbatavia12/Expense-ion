@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
         height : 80,
-        elevation: 10,
+        elevation: 5,
         marginBottom: 10
     },
     mainView: {
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     Text: {
-        fontSize: 25,
+        fontSize: 22,
         alignSelf: 'center',
         marginHorizontal: 10
     }

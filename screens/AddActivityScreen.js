@@ -1,14 +1,36 @@
-import React from 'react';
-import {View , Text, StyleSheet ,TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import {View , Text, StyleSheet ,TouchableOpacity, Animated, Dimensions} from 'react-native';
 import * as firebase from 'firebase';
 import AddActivityCard from '../components/AddActivityCard';
 import Entypo from 'react-native-vector-icons/Entypo'
 import MaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
+import Header from '../components/Header';
 
+const height = Dimensions.get('window').height;
 const AddActivityScreen = (props) => {
+    
+    const animatedSheet = new Animated.Value(height)
+    const [expenseType, setExpenseType] = useState(null);
+    const [sheetShown, setSheetShown] = useState(false);
+
+
+    const showActionSheet = () => {
+        Animated.timing(animatedSheet, {
+            toValue: -200,
+            duration: 2000
+        }).start();
+    }
+
+
     return(
         <View>
+        
+            <Header 
+                screenName = "Add another activity" 
+                backArrowHandler = {() => props.navigation.goBack()}
+                />
+            
             <AddActivityCard 
                 icon = {
                 <View style = {styles.iconView}>
@@ -17,6 +39,7 @@ const AddActivityScreen = (props) => {
                     </View>
                 </View>}
                 name = "Travel"
+                onPress = {() => showActionSheet()}
             /> 
             
             <AddActivityCard 
@@ -26,18 +49,32 @@ const AddActivityScreen = (props) => {
                         <MaterialCommunity style = {styles.travelIcon} name = "food"/>
                     </View>
                 </View>}
-                name = "Travel"
+                name = "Food"
             /> 
             
-            <AddActivityCard 
+            !sheetShown ? <View><AddActivityCard 
                 icon = {
                 <View style = {styles.hospitalView}>
                     <View style = {styles.smallView}>
                     <FontAwesome style = {styles.travelIcon} name = "hospital"/>
                     </View>
                 </View>}
-                name = "Travel"
+                name = "Medical"
             />
+
+            <AddActivityCard 
+                icon = {
+                <View style = {styles.schoolView}>
+                    <View style = {styles.smallView}>
+                        <MaterialCommunity style = {styles.travelIcon} name = "school"/>
+                    </View>
+                </View>}
+                name = "Educational"
+            /> </View>: null
+        <Animated.View style = {[styles.actionSheet , {marginTop : animatedSheet}]} >
+            <Text>HELLO</Text>
+        </Animated.View>
+            
         </View>
     );
 }
@@ -50,6 +87,7 @@ const styles = StyleSheet.create({
     iconView: {
         padding: 10,
         backgroundColor: '#450b91',
+        width: 80
     },
     smallView: {
         borderRadius: 100,
@@ -60,10 +98,21 @@ const styles = StyleSheet.create({
     foodView: {
         padding: 10,
         backgroundColor: '#c7ea46',
+        width: 80
     },
     hospitalView: {
         padding: 10,
-        backgroundColor: '#dc143c'
+        backgroundColor: '#dc143c',
+        width: 80
+    },
+    schoolView: {
+        padding: 10,
+        width: 80,
+        backgroundColor: 'black'
+    },
+    actionSheet: {
+        backgroundColor: 'black',
+        height: height
     }
 })
 
