@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View , Text, StyleSheet, Image, Dimensions, TextInput, TouchableOpacity } from 'react-native';
+import {View , Text, StyleSheet, Image, Dimensions, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import * as firebase from 'firebase';
 
 
@@ -30,7 +30,7 @@ const SignInScreen = ({navigation}) => {
                 <Text style = {styles.welcomeText}>We'll help you keep account of</Text>
                 <Text style = {styles.welcomeText , {alignSelf: 'center'}}>your money</Text>
             </View>
-            
+           <KeyboardAvoidingView>
             <View style = {styles.credentialsView}>
             <View style = {styles.individualViews}>
                     <Text style = {styles.credentialName}>Email</Text>
@@ -52,6 +52,7 @@ const SignInScreen = ({navigation}) => {
                     <Text style = {styles.gotoSignUp}>Sign Up</Text>
                 </TouchableOpacity>
             </View>
+            </KeyboardAvoidingView> 
         </View>
     );
 }

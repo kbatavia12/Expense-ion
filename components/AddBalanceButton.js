@@ -11,7 +11,7 @@ const AddBalanceButton = props => {
         <TouchableOpacity onPress = {props.onPress} style ={styles.container}>
             <View style = {styles.mainView}>
                 <Material name = "plus-circle-outline" style = {styles.plus} />
-                <Text style = {styles.addText}>Add Monthly Budget</Text>
+                <Text style = {styles.addText}>Set Monthly Budget</Text>
             </View>
         </TouchableOpacity>
     );

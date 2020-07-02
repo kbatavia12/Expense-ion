@@ -10,6 +10,7 @@ import IonIcons from 'react-native-vector-icons/Ionicons';
 import SignUpScreen from './screens/SignUpScreen';
 import SignInScreen from './screens/SignInScreen';
 import AddActivityScreen from './screens/AddActivityScreen';
+import Entypo from 'react-native-vector-icons/Entypo'
 
 var firebaseConfig = {
   apiKey: "AIzaSyBhfrUIddlhsSxGBg8jMXysh1y3MbGjqYs",
@@ -59,7 +60,7 @@ const App = () => {
             </Tab.Navigator>
               :
           <Tab.Navigator>
-            <Tab.Screen name = {'Home'}  component = {HomeScreen}/>
+            <Tab.Screen name = {'Home'}  component = {HomeScreen} />
             <Tab.Screen name = {'Activities'}  component = {Activities}/>
             <Tab.Screen name = {'Add Activities'}  component = {AddActivityScreen}/>
           </Tab.Navigator>

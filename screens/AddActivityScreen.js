@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View , Text, StyleSheet ,TouchableOpacity, Animated, Dimensions} from 'react-native';
+import {View , Text, StyleSheet ,TouchableOpacity, Animated, Dimensions,ScrollView} from 'react-native';
 import * as firebase from 'firebase';
 import AddActivityCard from '../components/AddActivityCard';
 import Entypo from 'react-native-vector-icons/Entypo'
@@ -10,21 +10,8 @@ import Header from '../components/Header';
 const height = Dimensions.get('window').height;
 const AddActivityScreen = (props) => {
     
-    const animatedSheet = new Animated.Value(height)
-    const [expenseType, setExpenseType] = useState(null);
-    const [sheetShown, setSheetShown] = useState(false);
-
-
-    const showActionSheet = () => {
-        Animated.timing(animatedSheet, {
-            toValue: -200,
-            duration: 2000
-        }).start();
-    }
-
-
     return(
-        <View>
+        <ScrollView>
         
             <Header 
                 screenName = "Add another activity" 
@@ -52,7 +39,7 @@ const AddActivityScreen = (props) => {
                 name = "Food"
             /> 
             
-            !sheetShown ? <View><AddActivityCard 
+            <AddActivityCard 
                 icon = {
                 <View style = {styles.hospitalView}>
                     <View style = {styles.smallView}>
@@ -60,7 +47,7 @@ const AddActivityScreen = (props) => {
                     </View>
                 </View>}
                 name = "Medical"
-            />
+            /> 
 
             <AddActivityCard 
                 icon = {
@@ -70,12 +57,9 @@ const AddActivityScreen = (props) => {
                     </View>
                 </View>}
                 name = "Educational"
-            /> </View>: null
-        <Animated.View style = {[styles.actionSheet , {marginTop : animatedSheet}]} >
-            <Text>HELLO</Text>
-        </Animated.View>
+            /> 
             
-        </View>
+        </ScrollView>
     );
 }
 
